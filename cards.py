@@ -11,11 +11,11 @@ class Card():
 
 ### Returns True if a card is playable, False otherwise.
     def playable(self, current_player):
-        if current_player.recruits <= self.recruits_c:
+        if current_player.recruits < self.recruits_c:
             return False
-        elif current_player.bricks <= self.bricks_c:
+        elif current_player.bricks < self.bricks_c:
             return False
-        elif current_player.crystals <= self.crystals_c:
+        elif current_player.crystals < self.crystals_c:
             return False
         else:
             return True
