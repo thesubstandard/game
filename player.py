@@ -17,6 +17,12 @@ class Player():
         self.city = city
         self.wall = wall
 
+    def card_is_playable(self, card_index):
+        if self.cards.playable(card_index, self.recruits, self.bricks, self.crystals):
+            return True
+        else:
+            return False
+
     def is_alive(self):
         if self.city > 0:
             return True
@@ -50,7 +56,7 @@ class Player():
     def damage(self, amount):
         city_damage = max(amount - self.wall, 0)
         wall_damage = min(amount, self.wall)
-        self.city -= city_damage
+        self.city = max(self.city - city_damage, 0)
         self.wall -= wall_damage
 
 ### Does direct damage to the player's wall.

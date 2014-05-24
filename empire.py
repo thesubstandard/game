@@ -25,7 +25,7 @@ crusader = cards.Card(
     )
 
 sentinel = cards.Card(
-    'Sentinel', '6 damage and +6 wall',
+    'Sentinel', '6 damage,\n+6 wall',
     5, 0, 0,
     [effects.Damage(6),
      effects.Build(0, 6)]
@@ -38,14 +38,14 @@ pegasus_knight = cards.Card(
     )
 
 paladin = cards.Card(
-    'Paladin', '20 damage and +5 wall',
+    'Paladin', '20 damage,\n+5 wall',
     12, 0, 0,
     [effects.Damage(20),
      effects.Build(0, 5)]
     )
 
 swords_to_plowshares = cards.Card(
-    'Swords to Plowshares', '+15 bricks',
+    'Swords to\nPlowshares', '+15 bricks',
     15, 0, 0,
     [effects.Resources(0, 15, 0)]
     )
@@ -81,7 +81,7 @@ fortified_wall = cards.Card(
     )
 
 church = cards.Card(
-    'Church', '+15 city, +5 crystals',
+    'Church', '+15 city,\n+5 crystals',
     0, 10, 0,
     [effects.Build(15, 0),
      effects.Resources(0, 0, 5)]
@@ -100,7 +100,7 @@ great_wall = cards.Card(
     )
 
 cathedral = cards.Card(
-    'Cathedral', '+30 city, +10 crystals',
+    'Cathedral', '+30 city,\n+10 crystals',
     0, 30, 0,
     [effects.Build(30, 0),
      effects.Resources(0, 0, 10)]
@@ -143,7 +143,7 @@ smite = cards.Card(
     )
 
 famine = cards.Card(
-    'Famine', 'opponent gets -8 of each resources',
+    'Famine', 'opponent gets -8\nof each resources',
     0, 0, 20,
-    [effects.Resources(-8, -8, -8)]
+    [effects.Resources(-8, -8, -8, False)]
     )
