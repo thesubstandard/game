@@ -2,10 +2,11 @@
 #   0 = human controlled
 
 class Player():
-    def __init__(self, cards, user = 0,
+    def __init__(self, cards, name, user = 0,
                  barracks = 2, mines = 2, towers = 2,
                  recruits = 4, bricks = 4, crystals = 4,
                  city = 30, wall = 10):
+        self.name = name
         self.user = user
         self.cards = cards
         self.barracks = barracks
