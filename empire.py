@@ -31,6 +31,12 @@ sentinel = cards.Card(
      effects.Build(0, 6)]
     )
 
+blockade = cards.Card(
+    'Blockade', 'opponent gathers\nno resources next\nturn',
+    8, 0, 0,
+    [effects.Buff('Blockade', False, False)]
+    )
+
 pegasus_knight = cards.Card(
     'Pegasus Knight', '15 city damage',
     10, 0, 0,
@@ -52,7 +58,7 @@ swords_to_plowshares = cards.Card(
 
 archon = cards.Card(
     'Archon', '25 city damage',
-    20, 0, 0,
+    16, 0, 4,
     [effects.City_Damage(25)]
     )
 

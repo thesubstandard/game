@@ -19,6 +19,18 @@ class Effect():
 
 ##------Specific Effects------
 
+class Buff(Effect):
+    def __init__(self, buff_name, stack_flag, target_self):
+        Effect.__init__(self, target_self)
+        self.buff_name = buff_name
+        self.stack_flag = stack_flag
+
+    def apply(self, current_player, current_opponent):
+        target_player = self.determine_target(current_player, current_opponent)
+        if self.stack_flag == True:
+            target_player.add_buff(self.buff_name)
+        elif target_player.has_buff(self.buff_name) == False:
+            target_player.add_buff(self.buff_name)
 
 class Economy(Effect):
     def __init__(self, barracks, mines, towers, target_self = True):

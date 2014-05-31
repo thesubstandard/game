@@ -47,7 +47,7 @@ class Card():
             output += cost_strings[0]
             del cost_strings[0]
             while cost_strings != []:
-                output += ', ' + cost_strings[0]
+                output += ',\n' + cost_strings[0]
                 del cost_strings[0]
             output += ')'
             return output

@@ -172,10 +172,10 @@ class Battle(Frame):
 
     ## Removes the Card Buttons, saving their grid options.    
     def hide_card_buttons(self):
+        self.disable_card_buttons()
         for card in self._playercards:
-            card.grid_remove()
-        for button in self._discardbuttons:
-            button.grid_remove()
+            card.configure(text = '')
+        self.update()
 
     ## Disables the Card Buttons so they are visible but not pressable.
     def disable_card_buttons(self):
@@ -198,7 +198,7 @@ class Battle(Frame):
 
     def display_start_turn_button(self):
         self._startturnbutton.update_text(self.current_player)
-        self._startturnbutton.grid(row = 9, column = 0, rowspan = 2, columnspan = 11)
+        self._startturnbutton.grid(row = 9, column = 0, columnspan = 11)
 
     def hide_start_turn_button(self):
         self._startturnbutton.grid_remove()

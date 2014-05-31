@@ -70,6 +70,7 @@ for deck in (p1_deck, p2_deck):
         deck.append(empire.militia)
         deck.append(empire.crusader)
         deck.append(empire.sentinel)
+        deck.append(empire.blockade)
         deck.append(empire.pegasus_knight)
         deck.append(empire.paladin)
         deck.append(empire.swords_to_plowshares)
@@ -94,7 +95,7 @@ for deck in (p1_deck, p2_deck):
 import player
 
 p1 = player.Player(cards.PlayerCards(p1_deck), 'Player 1')
-p2 = player.Player(cards.PlayerCards(p1_deck), 'Player 2', 1)
+p2 = player.Player(cards.PlayerCards(p2_deck), 'Player 2')
 
 p1.cards.shuffle_deck()
 p2.cards.shuffle_deck()

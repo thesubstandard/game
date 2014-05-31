@@ -1,5 +1,7 @@
 #The user attribute defines the controller of the player:
 #   0 = human controlled
+#   1 and higher = computer controlled
+#   ai 1 = random
 
 class Player():
     def __init__(self, cards, name, user = 0,
@@ -9,6 +11,7 @@ class Player():
         self.name = name
         self.user = user
         self.cards = cards
+        self.buffs = []
         self.barracks = barracks
         self.mines = mines
         self.towers = towers
@@ -30,40 +33,67 @@ class Player():
         else:
             return False
 
-### Adjusts the player's resource collection rate.
+    ## Typically done at the start of each turn, gathers resources
+    def gather(self):
+        if self.has_buff('Blockade'):
+            self.remove_buff('Blockade')
+        else:
+            self.recruits += self.barracks
+            self.bricks += self.mines
+            self.crystals += self.towers
+
+    ##---------------------------------------------------------------##
+    ##------------------------Buff Processing------------------------##
+    ##---------------------------------------------------------------##
+    ## Buffs are simply strings, organized in a list. When certain
+    ## Effects are triggered by cards, they check the buff list and
+    ## if certain buffs are present the effect might be altered.
+
+    def has_buff(self, buff_name):
+        if buff_name in self.buffs:
+            return True
+        else:
+            return False
+
+    def add_buff(self, buff_name):
+        self.buffs.append(buff_name)
+
+    def remove_buff(self, buff_name):
+        if (buff_name in self.buffs) == True:
+            self.buffs.remove(buff_name)
+
+    ##----------------------------------------------------------------##
+    ##---------------------Card Triggered Effects---------------------##
+    ##----------------------------------------------------------------##
+
+    ## Adjusts the player's resource collection rate.
     def economy(self, barracks, mines, towers):
         self.barracks = max(self.barracks + barracks, 1)
         self.mines = max(self.mines + mines, 1)
         self.towers = max(self.towers + towers, 1)
 
-### Adjusts the player's resources.
+    ## Adjusts the player's resources.
     def resources(self, recruits, bricks, crystals):
         self.recruits = max(self.recruits + recruits, 0)
         self.bricks = max(self.bricks + bricks, 0)
         self.crystals = max(self.crystals + crystals, 0)
 
-### Typically done at the start of each turn, gathers resources
-    def gather(self):
-        self.recruits += self.barracks
-        self.bricks += self.mines
-        self.crystals += self.towers
-
-### Increases a player's city and/or wall.
+    ## Increases a player's city and/or wall.
     def build(self, city, wall):
         self.city += city
         self.wall = min(self.wall + wall, 100)
 
-### Does normal damage to the player.
+    ## Does normal damage to the player.
     def damage(self, amount):
         city_damage = max(amount - self.wall, 0)
         wall_damage = min(amount, self.wall)
         self.city = max(self.city - city_damage, 0)
         self.wall -= wall_damage
 
-### Does direct damage to the player's wall.
+    ## Does direct damage to the player's wall.
     def wall_damage(self, amount):
         self.wall = max(self.wall - amount, 0)
 
-### Does direct damage to the player's city.
+    ## Does direct damage to the player's city.
     def city_damage(self, amount):
         self.city = max(self.city - amount, 0)
